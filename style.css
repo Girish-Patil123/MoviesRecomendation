@@ -1,17 +1,25 @@
+/* RESET AND BASE STYLES */
 * {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: "Roboto", sans-serif;
+  background-color: #151515;
+  color: white;
+  line-height: 1.6;
 }
 
+/* NAVBAR */
 .navbar {
   width: 100%;
   height: 50px;
   background-color: black;
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
 
 .navbar-container {
@@ -39,6 +47,7 @@ body {
 .menu-list {
   display: flex;
   list-style: none;
+  flex-wrap: wrap;
 }
 
 .menu-list-item {
@@ -48,6 +57,7 @@ body {
 .menu-list-item.active {
   font-weight: bold;
 }
+
 .made-by {
   flex: 1;
   text-align: right;
@@ -63,7 +73,6 @@ body {
 .made-by a:hover {
   text-decoration: underline;
 }
-
 
 .profile-container {
   flex: 2;
@@ -83,6 +92,7 @@ body {
   object-fit: cover;
 }
 
+/* TOGGLE */
 .toggle {
   width: 40px;
   height: 20px;
@@ -109,6 +119,7 @@ body {
   transition: 1s ease all;
 }
 
+/* SIDEBAR */
 .sidebar {
   width: 50px;
   height: 100%;
@@ -127,19 +138,53 @@ body {
   margin-bottom: 40px;
 }
 
+/* MAIN CONTAINER */
 .container {
   background-color: #151515;
   min-height: calc(100vh - 50px);
   color: white;
 }
 
-.content-container {
-  margin-left: 50px;
+.container.active {
+  background-color: white;
 }
 
+.navbar-container.active {
+  background-color: white;
+  color: black;
+}
+
+.sidebar.active {
+  background-color: white;
+}
+
+.left-menu-icon.active {
+  color: black;
+}
+
+.toggle.active {
+  background-color: black;
+}
+
+.toggle-ball.active {
+  background-color: white;
+  transform: translateX(-20px);
+}
+
+.content-container {
+  margin-left: 50px;
+  padding: 20px;
+}
+
+/* FEATURED SECTION */
 .featured-content {
-  height: 50vh;
+  height: 70vh;
   padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background-size: cover;
 }
 
 .featured-title {
@@ -153,17 +198,17 @@ body {
 }
 
 .featured-button {
-    padding: 10px 20px;
-    background-color: red;
-    color: white;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-
+/* MOVIE LIST */
 .movie-list-container {
   padding: 0 20px;
 }
@@ -177,13 +222,13 @@ body {
   display: flex;
   align-items: center;
   height: 300px;
-  transform: translateX(0);
   transition: all 1s ease-in-out;
 }
 
 .movie-list-item {
   margin-right: 30px;
   position: relative;
+  flex-shrink: 0;
 }
 
 .movie-list-item:hover .movie-list-item-img {
@@ -206,28 +251,29 @@ body {
   border-radius: 20px;
 }
 
+.movie-list-item-title,
+.movie-list-item-desc,
+.movie-list-item-button {
+  position: absolute;
+  left: 50px;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
 .movie-list-item-title {
   background-color: #333;
   padding: 0 10px;
   font-size: 32px;
   font-weight: bold;
-  position: absolute;
   top: 10%;
-  left: 50px;
-  opacity: 0;
-  transition: 1s all ease-in-out;
 }
 
 .movie-list-item-desc {
   background-color: #333;
   padding: 10px;
   font-size: 14px;
-  position: absolute;
   top: 30%;
-  left: 50px;
   width: 230px;
-  opacity: 0;
-  transition: 1s all ease-in-out;
 }
 
 .movie-list-item-button {
@@ -238,11 +284,7 @@ body {
   outline: none;
   border: none;
   cursor: pointer;
-  position: absolute;
   bottom: 20px;
-  left: 50px;
-  opacity: 0;
-  transition: 1s all ease-in-out;
 }
 
 .arrow {
@@ -255,42 +297,7 @@ body {
   cursor: pointer;
 }
 
-.container.active {
-  background-color: white;
-}
-
-.movie-list-title.active {
-  color: black;
-}
-
-.navbar-container.active {
-  background-color: white;
-
-  color: black;
-}
-
-.sidebar.active{
-    background-color: white;
-}
-
-.left-menu-icon.active{
-    color: black;
-}
-
-.toggle.active{
-    background-color: black;
-}
-
-.toggle-ball.active{
-    background-color: white;
-    transform: translateX(-20px);
-}
-
-@media only screen and (max-width: 940px){
-    .menu-container{
-        display: none;
-    }
-}
+/* CHATBOT */
 .chatbot-container {
   position: fixed;
   bottom: 10px;
@@ -304,40 +311,46 @@ body {
 }
 
 .chatbot-glass {
-  width: 400px;
-  margin-top: 30px;
-  padding: 20px;
+  width: 100%;
+  padding: 25px;
   border-radius: 20px;
-  background: rgba(30, 30, 30, 0.5);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .chatbot-glass h3 {
   text-align: center;
   margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   color: #4dbf00;
 }
 
 #chat-messages {
-  max-height: 150px;
+  max-height: 300px;
   overflow-y: auto;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  background: #111;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  border-radius: 8px;
   margin-bottom: 10px;
-  font-size: 14px;
+}
+
+#chat-messages p, #chat-messages div {
+  margin-bottom: 8px;
 }
 
 #user-genre {
-  width: 70%;
-  padding: 8px;
+  width: 72%;
+  padding: 10px;
   border-radius: 5px;
   border: none;
   background-color: rgba(255, 255, 255, 0.1);
@@ -356,86 +369,65 @@ body {
   margin-left: 5px;
 }
 
-
-.featured-content {
-  height: 70vh;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  background-size: cover;
+/* RESPONSIVE DESIGN */
+@media only screen and (max-width: 940px) {
+  .menu-container {
+    display: none;
+  }
 }
 
-.chatbot-glass {
-  width: 380px;
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  margin-top: 30px;
-  font-family: "Roboto", sans-serif;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
-}
+@media only screen and (max-width: 768px) {
+  .navbar-container {
+    flex-wrap: wrap;
+    padding: 0 20px;
+    justify-content: space-between;
+  }
 
-.chatbot-glass h3 {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #4dbf00;
-}
+  .profile-text-container,
+  .sidebar {
+    display: none;
+  }
 
-#chat-messages {
-  max-height: none; /* ⬅ Removes scrollbar */
-  overflow: visible;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  font-size: 14px;
-  color: #eee;
-}
+  .featured-content,
+  .movie-list-wrapper,
+  .movie-list-container {
+    padding: 10px;
+  }
 
+  .movie-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    height: auto;
+  }
 
-#user-genre {
-  width: 72%;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-}
+  .movie-list-item-img {
+    width: 90vw;
+    height: auto;
+  }
 
+  .movie-list-item-title,
+  .movie-list-item-desc,
+  .movie-list-item-button {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    font-size: 90%;
+  }
 
-.chatbot-glass {
-  width: 600px; /* ⬅ Wider for more content */
-  margin: 0 auto; /* ⬅ Centers horizontally */
-  padding: 25px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  font-family: "Roboto", sans-serif;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-#chat-messages {
-  max-height: 300px;
-  overflow-y: auto;
-  padding: 10px;
-  background: #111;
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
+  .chatbot-container,
+  .chatbot-glass {
+    width: 100vw;
+    border-radius: 0;
+    padding: 15px;
+  }
 
-#chat-messages p, #chat-messages div {
-  margin-bottom: 8px;
+  .chatbot-glass button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .arrow {
+    font-size: 80px;
+    top: 80px;
+  }
 }
